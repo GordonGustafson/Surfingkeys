@@ -298,6 +298,7 @@ function createHints() {
             link.style.top = Math.max(r.top + window.pageYOffset - bof.top, 0) + "px";
             link.style.left = left + "px";
             link.style.zIndex = z + 9999;
+            link.style.fontSize = '12pt';
             link.zIndex = link.style.zIndex;
             link.label = hintLabels[i];
             link.link = elm;

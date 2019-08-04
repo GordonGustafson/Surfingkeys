@@ -328,6 +328,119 @@ var Omnibar = (function() {
     }
 
     self.input = ui.querySelector('input');
+
+    function makeTranslator(textBox) {
+        const keyPressHandler = function(event) {
+            // Prevent the key pressed from being inserted into the textbox
+            // normally.
+            event.preventDefault();
+            if (event.key in self.qwertyToDvorak) {
+                textBox.value = (textBox.value + self.qwertyToDvorak[event.key]);
+            }
+            // Without this the suggestions won't update immediately.
+            _onIput();
+        };
+
+        textBox.onkeypress = keyPressHandler;
+    }
+
+    self.qwertyToDvorak = {
+        "q": "'",
+        "w": ",",
+        "e": ".",
+        "r": "p",
+        "t": "y",
+        "y": "f",
+        "u": "g",
+        "i": "c",
+        "o": "r",
+        "p": "l",
+        "[": "/",
+        "]": "=",
+        "a": "a",
+        "s": "o",
+        "d": "e",
+        "f": "u",
+        "g": "i",
+        "h": "d",
+        "j": "h",
+        "k": "t",
+        "l": "n",
+        ";": "s",
+        "'": "-",
+        "z": ";",
+        "x": "q",
+        "c": "j",
+        "v": "k",
+        "b": "x",
+        "n": "b",
+        "m": "m",
+        ",": "w",
+        ".": "v",
+        "/": "z",
+        "Q": "\"",
+        "W": "<",
+        "E": ">",
+        "R": "P",
+        "T": "Y",
+        "Y": "F",
+        "U": "G",
+        "I": "C",
+        "O": "R",
+        "P": "L",
+        "{": "?",
+        "}": "+",
+        "A": "A",
+        "S": "O",
+        "D": "E",
+        "F": "U",
+        "G": "I",
+        "H": "D",
+        "J": "H",
+        "K": "T",
+        "L": "N",
+        ":": "S",
+        "\"": "_",
+        "X": "Q",
+        "C": "J",
+        "V": "K",
+        "B": "X",
+        "N": "B",
+        "M": "M",
+        "<": "W",
+        ">": "V",
+        "?": "Z",
+        "Z": ":",
+        "=": "]",
+        "+": "}",
+        "-": "[",
+        "_": "{",
+        // Not transformed
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7",
+        "8": "8",
+        "9": "9",
+        "0": "0",
+        "!": "!",
+        "@": "@",
+        "#": "#",
+        "$": "$",
+        "%": "%",
+        "^": "^",
+        "&": "&",
+        "*": "*",
+        "(": "(",
+        ")": ")",
+        " ": " "
+    };
+
+    makeTranslator(self.input);
+
     self.promptSpan = ui.querySelector('#sk_omnibarSearchArea>span.prompt');
     var resultPageSpan = ui.querySelector('#sk_omnibarSearchArea>span.resultPage');
     self.resultsDiv = ui.querySelector('#sk_omnibarSearchResult');
